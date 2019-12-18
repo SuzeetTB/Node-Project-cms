@@ -1,0 +1,51 @@
+<table class="table table-sm table-secondary table-hover table-bordered ">
+  <span class="d-block p-2 bg-dark text-white">Posts</span>
+    <thead class="bg-secondary">
+      <tr>
+        <th>Id</th>
+        <th>Featured Image</th>
+        <th>Post Title</th>
+        <th>Subtitle</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Comments</th>
+        <th>Date</th>
+        <th>Authorised</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each posts}} {{!-- for each loop --}}
+      <tr>
+        
+        <td>{{@index}}</td>{{!-- {{ id }} --}}
+        <td><img height="50" src="/uploads/{{file}}" alt="file"></td>
+        <td>{{title}}</td>  
+        <td>{{subtitle}}</td>
+        <td>{{category.name}}</td>
+        <td>{{status}}</td>
+        <td>{{allowComments}}</td>
+        <td>{{generateTime date 'MMM-D-YY'}}</td>
+        <td>
+          <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                <a href="/post/{{id}}" class="btn btn-block btn-outline-info"><i class="fa fa-eye"></i></a>
+              </div>
+              <div class="col-sm-4">
+                <a href="/admin/posts/edit/{{id}}" class="btn btn-block btn-outline-warning"><i class="fa fa-edit"></i></a>
+              </div>
+              <div class="col-sm-4">
+                <form action="/admin/posts/{{slug}}?_method=DELETE" method="POST">
+                  <button type="submit" class="btn btn-block btn-outline-danger hover">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </td> {{!-- edit and delete --}}
+       
+      </tr>
+      {{/each}} {{!-- end for each loop --}}
+    </tbody>
+  </table>

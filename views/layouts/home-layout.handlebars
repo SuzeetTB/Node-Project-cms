@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Z Blog - Suzeet Twanabasu</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for home page -->
+    <link href="/css/blog-home.css" rel="stylesheet">
+    <!-- Custom styles for single post page -->
+    <link href="/css/blog-post.css" rel="stylesheet">
+
+    <style>
+        #image{
+            padding: 30px;
+            filter:grayscale(50%);            
+        }
+        #image:hover{
+            filter:grayscale(80%);
+            transition: .5s ease;
+            transform: scale(.9);
+        }
+        #image:hover::after{
+            transition: .5s ease;
+        }
+    </style>
+
+</head>
+
+<body style="background-image: url('../../uploads/bg-raindrops.jpg');
+            background-repeat: no-repeat;
+            background-size: 1500px 800px;
+            background-attachment: fixed;">
+    <!-- Navigation -->
+    {{>home/home-nav}}
+
+    <!-- Page Content -->
+    <div class="container">
+        {{#if errors}}
+            {{#each errors}}
+                <div class="alert alert-danger">
+                    {{message}}
+                </div>
+            {{/each}}
+        {{/if}}
+        {{> admin/form-message}}
+        {{{body}}}
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    {{>home/footer}}
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/js/jquery/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

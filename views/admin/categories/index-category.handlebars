@@ -1,0 +1,56 @@
+<div class="row ml-1 bg-light text-dark">
+    <div class="col-sm-4 ">
+        <h1>Create Category</h1>
+        <form action="/admin/categories/create" method="post">
+            <input type="text" class="form-control" name="caption" placeholder="What's the category about?" autocomplete="off"><br>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Enter Category Name" name="name" required
+                    aria-label="Enter Category Name" aria-describedby="basic-addon2" autocomplete="off">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">New Category</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-7">
+        <span class="d-block p-2 bg-dark text-white">Categories</span>
+        <table class="table table-hover table-dark">
+            <thead class="bg-secondary">
+                <tr>
+                    <th scope="col">S.N.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">About</th>
+                    <th scope="col" style="text-align:center">Edit | Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each categories}}
+                <tr>
+                    {{!-- <th scope="row">{{id}}</th> --}}
+                    <td>{{@index}}</td>
+                    <td>{{name}}</td>
+                    <td>{{caption}}</td>
+                    <td>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="/admin/categories/edit/{{id}}" class="btn btn-block btn-outline-warning"><i
+                                            class="fa fa-edit sm"></i></a>
+                                </div>
+                                <div class="col">
+                                    <form action="/admin/categories/{{id}}?_method=DELETE" method="POST">
+                                        <button type="submit" class="btn btn-block btn-outline-danger hover">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

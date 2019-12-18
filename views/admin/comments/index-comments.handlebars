@@ -1,0 +1,49 @@
+<div align="center" class="bg-dark" >
+    <div class="col-sm-11">
+        <span class="d-block p-2 bg-dark text-white">Comments</span>
+        <table class="table table-hover table-light">
+            <thead class="bg-secondary">
+                <tr>
+                    <th scope="col">S.N.</th>
+                    <th scope="col">Owner Id</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Comment</th>
+                    <th>Date</th>
+                    <th scope="col" style="text-align:center">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each comments}}
+                <tr>
+                    <td>{{@index}}</td>
+                    <td>{{id}}</td>
+                    <td>{{user.firstName}}</td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <input type="checkbox" {{#if approveComment}} checked {{/if}} name="approveComment" data-id="{{id}}"/>
+                            </div>
+                            <div class="col-sm-8">
+                                {{body}}
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{generateTime date 'MM-D-YY'}}</td>
+                    <td>
+                        <div class="container-fluid">
+                            <div align="center">
+                                <form action="/admin/comments/{{id}}?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-block btn-outline-danger hover">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <br>
+</div>

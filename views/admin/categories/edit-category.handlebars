@@ -1,0 +1,15 @@
+<div class="row ml-1 bg-light text-dark">
+    <div class="col-sm-4 ">
+        <h1>Edit Category</h1>
+        <form action="/admin/categories/edit/{{category.id}}?_method=PUT" method="post">
+            <input type="text" class="form-control" name="caption" value="{{category.caption}}"><br>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" value="{{category.name}}" name="name" required
+                    aria-label="Enter Category Name" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Update Category</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

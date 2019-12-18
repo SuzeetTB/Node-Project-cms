@@ -1,0 +1,128 @@
+1. terminal => npm init
+    declare project properties
+2. Create Directories,
+    1.Views:    Html pages, templates in which we serve data to client, jade handlebars
+    2.Models:   data classes, Models
+    3.Public:   client elements, css , images
+    4.Routes:   list of routes
+    5.Config:   for configuration files of API, Databases,
+    6.Helpers:  for functions to help in our project not inclusively placed in other places
+3. Create App EntryFile: app.js or index.js 
+    -> declared during npm init;
+    -> can be renamed as server.js, since it is our server app.
+4. Installing modules:
+    1.express: npm install express;
+    2.nodemon: npm install -g nodemon;
+
+5. Create server in app.js as
+    const express = require('express');
+    const app = express();
+    const port = process.env.PORT || 4545;
+
+
+    app.listen(port,()=>{
+        console.log(
+            `
+            Server is Active |
+            try localhost:${port}
+            `
+            );
+    });
+
+6. Setting up path 
+    const path = require('path');
+
+    app.use(express.static(path.join(__dirname, 'public')));
+
+    app.get('/', (req,res)=>{
+        res.send(`It is working`);
+    });
+7. Views Directory management and View Engine setup
+    -create directory home, layouts
+
+    app.set('view engine', 'handlebars');
+    app.engine('handlebars', exphb({defaultLayout:'home'}));
+
+    //for handlebars
+        // to install handle bars
+        // npm install express=handlebars
+
+    app.engine('jade'...); // for jade template engine
+
+    // to render the view
+        res.render('home/index');
+8. Public folder setup
+    -create directory for css, js and uploads
+9. Layouts folder has a template files
+    to yield content on the layouts, we use
+        {{{body}}}
+    at required body of content from home folder like index, about
+
+10. Partials - for relocating HTML code for Html elements
+    to load Partials
+    {{>directory/partial-name}}
+
+    in handlebars view engine, 
+        create partials folder in views>
+            create folders for pagewise partial components
+            like for admin, home, 
+            inside folders, create partial files as
+                footer.handlebars,
+                navigation.handlebars,
+
+11. Routes
+    in routes folder create directory based route files
+    in the route file start as 
+        const express = require('express');
+        const router = express.Router();
+
+        router.get('/', (req,res)=>{
+            //res.send(`It is working`);
+            res.render('home/index');
+        });
+        module.exports = router;
+
+    To load the route file in the main app like app.js or index.js
+        const main_routes = require('./routes/home/main-routes'); // loads the routes 
+        app.use('/', main_routes); // uses the routes
+    here 'main_routes ' is a route file;
+
+12. Databases
+    Install Mongoose : npm instal Mongoose
+    Require it in the main app, app.js
+        mongoose.connect('mongodb://localhost:27017/cms',{
+            useNewUrlParser:true,
+            useUnifiedTopology:true
+        }).then(db=>{
+            console.log(`Database Connected`);
+        }).catch(error=>console.log(`COULD NOT CONNECT |`+ error));
+
+13.Models
+    //creating models as
+    const mongoose = require('mongoose');
+    const schema = mongoose.Schema;
+
+    //PostSchema needs to be exported so we assign new Schema to it.
+    const PostSchema = new Schema({
+        //objects
+        user:{        },
+        title:{
+            type: String,
+            required: true,
+        }
+    });
+    module.exports = mongoose.model('posts', PostSchema);
+
+14.post method input to Database
+    first install bodyParser
+        npm install body-parser
+    require it in server, app.js
+        const bodyParser = require("body-parser")
+
+        lots of stuffs to do
+
+15. Photo uploads
+    modules required
+        const upload = require('express-fileupload');
+    use it : app.use(upload());
+

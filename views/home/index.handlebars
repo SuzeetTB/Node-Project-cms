@@ -1,0 +1,39 @@
+<div class="row bg-transparent text-white">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8 ">
+        <br>
+       {{!--  <h1 class="my-4">Home
+            <small></small>
+        </h1> --}}
+
+        <!-- Blog Post -->
+        {{#each posts}}
+        <div class="card mb-4 bg-dark">
+            <img id="image" class="card-img-top" height="450" src="/uploads/{{file}}" alt="Card image cap">
+            <div class="card-body">
+                <h2 class="card-title">{{title}} |
+                    <small>{{subtitle}}</small>
+                </h2>
+                <p class="card-text">{{body}}</p>
+                <a href="/post/{{slug}}" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+                Posted on {{generateTime date 'MMMM Do YYYY'}} by
+                <a href="#">Z Blog</a>
+            </div>
+        </div>
+        {{/each}}
+
+
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4 ">
+            {{#paginate current=current pages=pages}}
+            {{/paginate}}
+        </ul>
+
+    </div>
+
+   {{>home/home-sidebar}}
+</div>
+<!-- /.row -->

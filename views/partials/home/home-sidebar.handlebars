@@ -1,0 +1,76 @@
+ <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
+
+          {{!-- Clock Widget --}}
+        <div class="card my-4 bg-dark">
+            <link rel="stylesheet" href="/css/clock.css">
+            <script>
+                function fix2len (e) {return Number(e) > 9 ? '' + e : '0' + e}
+                var El = document.querySelectorAll.bind(document)
+                function autoCall() {
+                    var n = new this.Date
+                    El('.mp-1')[0].innerText =
+                        fix2len(n.getHours())
+                    El('.mp-2')[0].innerText =
+                        fix2len(n.getMinutes())
+                    El('.mp-3 > span')[0].innerText =
+                        fix2len(n.getSeconds())
+                    setTimeout(autoCall, 1000)
+                }
+                window.onload = autoCall    
+            </script>
+            <div id="clockBoxDiv">
+                <div class="box-clock">
+                    <div class="mp-1"></div>
+                    <div class="mp-2"></div>
+                    <div class="mp-3">
+                        <span class="rotate-90"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search Widget -->
+        <div class="card my-4 bg-dark">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <div class="card my-4 bg-dark">
+            <h5 class="card-header">Categories</h5>
+            <div class="card-body">
+                <div class="row">
+                    {{#each categories}}
+                    <div class="col-lg-6">
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#">{{name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Side Widget -->
+        <div class="card my-4 bg-dark">
+            <h5 class="card-header">Side Widget</h5>
+            <div class="card-body">
+                You can put anything you want inside of these side widgets. They are easy to use, and feature the new
+                Bootstrap 4 card containers!
+            </div>
+        </div>
+
+      
+
+    </div>
