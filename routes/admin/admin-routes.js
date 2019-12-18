@@ -4,10 +4,10 @@ const faker = require('faker');
 const Post= require('../../models/Post');
 const Category = require('../../models/Category');
 const Comments = require('../../models/Comment');
-//const {userAuthenticated} = require('../../helpers/authenticate-helpers');
+const {userAuthenticated} = require('../../helpers/authenticate-helpers');
 
 // all the routes in this route-file follows specifics of this file
-router.all('/*', /* userAuthenticated ,*/(req, res, next)=>{
+router.all('/*', userAuthenticated ,(req, res, next)=>{
     req.app.locals.layout = 'admin-layout';
     next();
 });
