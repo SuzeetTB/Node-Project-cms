@@ -29,7 +29,7 @@
     "moment": "^2.24.0",
     "mongoose": "^5.7.12",
     "mongoose-url-slugs": "^1.0.2",
-    "passport": "^0.4.1",
+    "passport": "^0.6.0",
     "passport-local": "^1.0.0"
   }
 }
